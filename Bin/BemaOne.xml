@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bematech>
+	<sistema>
+        <path>C:\Users\b1103373\Documents\Visual xHarbour Projects\Project1\Bin\</path>
+        <nivelLog>1</nivelLog>
+	</sistema>
+	<nfe>
+		<timeoutWebservice>30</timeoutWebservice> <!--Em segundos-->
+	</nfe>
+</bematech>
+

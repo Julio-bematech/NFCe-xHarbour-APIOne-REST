@@ -1,0 +1,459 @@
+//------------------------------------------------------------------------------------------------------------------------------------
+
+CLASS Form1 INHERIT WinForm
+   // Components declaration
+   METHOD Init() CONSTRUCTOR
+
+   // Event declaration
+   METHOD Form1_OnCreate()
+   METHOD Form1_OnDestroy()
+   METHOD Form1_OnShowWindow()
+   METHOD btnAbrir_OnClick()
+   METHOD bntVender_OnClick()
+   METHOD btnPagar_OnClick()
+   METHOD btnFechar_OnClick()
+   METHOD Label1_OnClick()
+   METHOD btnCancelar_OnClick()
+   METHOD btnStatusImpressora_OnClick()
+   METHOD btnInfoSistema_OnClick()
+   METHOD btnNotaErro_OnClick()
+   METHOD bntConsultarNota_OnClick()
+   METHOD btnImprimir_OnClick()
+   METHOD btnConsultarNotaChave_OnClick()
+   METHOD btnEstornarNota_OnClick()
+
+ENDCLASS
+
+METHOD Init( oParent, aParameters ) CLASS Form1
+   ::Super:Init( oParent, aParameters )
+
+   ::EventHandler[ "OnCreate" ] := "Form1_OnCreate"
+   ::EventHandler[ "OnDestroy" ] := "Form1_OnDestroy"
+   ::EventHandler[ "OnShowWindow" ] := "Form1_OnShowWindow"
+
+   // Populate Components
+   // Properties declaration
+   ::Name                 := "Form1"
+   ::Left                 := 10
+   ::Top                  := 10
+   ::Width                := 733
+   ::Height               := 609
+   ::Text                 := "Exemplo Bema One DLL"
+   ::Center               := .T.
+
+   ::Create()
+
+   // Populate Children
+   WITH OBJECT ( BUTTON( Self ) )
+      :Name                 := "btnAbrir"
+      :Left                 := 7
+      :Top                  := 121
+      :Width                := 140
+      :Height               := 25
+      :Text                 := "Abrir"
+      :EventHandler[ "OnClick" ] := "btnAbrir_OnClick"
+      :Create()
+   END //BUTTON
+
+   WITH OBJECT ( BUTTON( Self ) )
+      :Name                 := "bntVender"
+      :Left                 := 7
+      :Top                  := 162
+      :Width                := 140
+      :Height               := 25
+      :Text                 := "Vender"
+      :EventHandler[ "OnClick" ] := "bntVender_OnClick"
+      :Create()
+   END //BUTTON
+
+   WITH OBJECT ( BUTTON( Self ) )
+      :Name                 := "btnPagar"
+      :Left                 := 7
+      :Top                  := 203
+      :Width                := 140
+      :Height               := 25
+      :Text                 := "Pagar"
+      :EventHandler[ "OnClick" ] := "btnPagar_OnClick"
+      :Create()
+   END //BUTTON
+
+   WITH OBJECT ( BUTTON( Self ) )
+      :Name                 := "btnFechar"
+      :Left                 := 7
+      :Top                  := 245
+      :Width                := 140
+      :Height               := 25
+      :Text                 := "Fechar"
+      :EventHandler[ "OnClick" ] := "btnFechar_OnClick"
+      :Create()
+   END //BUTTON
+
+   WITH OBJECT ( EDITBOX( Self ) )
+      :Name                 := "edtEnvio"
+      WITH OBJECT :Font
+         :FaceName             := "Courier"
+      END
+
+      :VertScroll           := .T.
+      :HorzScroll           := .T.
+      :Left                 := 154
+      :Top                  := 25
+      :Width                := 313
+      :Height               := 202
+      :MenuArrow            := .T.
+      :AutoVScroll          := .T.
+      :AutoHScroll          := .T.
+      :MultiLine            := .T.
+      :OemConvert           := .T.
+      :WantReturn           := .T.
+      :Create()
+   END //EDITBOX
+
+   WITH OBJECT ( LABEL( Self ) )
+      :Name                 := "Label1"
+      :Left                 := 554
+      :Top                  := 6
+      :Width                := 71
+      :Height               := 15
+      :Text                 := "Texto Livre"
+      :EventHandler[ "OnClick" ] := "Label1_OnClick"
+      :Create()
+   END //LABEL
+
+   WITH OBJECT ( BUTTON( Self ) )
+      :Name                 := "btnCancelar"
+      :Left                 := 373
+      :Top                  := 432
+      :Width                := 97
+      :Height               := 25
+      :Text                 := "Cancelar Nota"
+      :EventHandler[ "OnClick" ] := "btnCancelar_OnClick"
+      :Create()
+   END //BUTTON
+
+   WITH OBJECT ( BUTTON( Self ) )
+      :Name                 := "btnStatusImpressora"
+      :Left                 := 7
+      :Top                  := 353
+      :Width                := 140
+      :Height               := 25
+      :Text                 := "Status Impressora"
+      :EventHandler[ "OnClick" ] := "btnStatusImpressora_OnClick"
+      :Create()
+   END //BUTTON
+
+   WITH OBJECT ( BUTTON( Self ) )
+      :Name                 := "btnInfoSistema"
+      :Left                 := 7
+      :Top                  := 388
+      :Width                := 140
+      :Height               := 25
+      :Text                 := "Informações do Sistema"
+      :EventHandler[ "OnClick" ] := "btnInfoSistema_OnClick"
+      :Create()
+   END //BUTTON
+
+   WITH OBJECT ( BUTTON( Self ) )
+      :Name                 := "btnNotaErro"
+      :Left                 := 7
+      :Top                  := 317
+      :Width                := 140
+      :Height               := 25
+      :Text                 := "Nota com Rejeição"
+      :EventHandler[ "OnClick" ] := "btnNotaErro_OnClick"
+      :Create()
+   END //BUTTON
+
+   WITH OBJECT ( BUTTON( Self ) )
+      :Name                 := "bntConsultarNota"
+      :Left                 := 372
+      :Top                  := 522
+      :Width                := 100
+      :Height               := 25
+      :Text                 := "Consultar Nota"
+      :EventHandler[ "OnClick" ] := "bntConsultarNota_OnClick"
+      :Create()
+   END //BUTTON
+
+   WITH OBJECT ( EDITBOX( Self ) )
+      :Name                 := "edtSerie"
+      :Left                 := 52
+      :Top                  := 55
+      :Width                := 80
+      :Height               := 22
+      :Text                 := "1"
+      :Create()
+   END //EDITBOX
+
+   WITH OBJECT ( LABEL( Self ) )
+      :Name                 := "Label2"
+      :Left                 := 17
+      :Top                  := 58
+      :Width                := 29
+      :Height               := 16
+      :Text                 := "Série"
+      :Create()
+   END //LABEL
+
+   WITH OBJECT ( EDITBOX( Self ) )
+      :Name                 := "edtNumero"
+      :Left                 := 53
+      :Top                  := 84
+      :Width                := 80
+      :Height               := 22
+      :Text                 := "10"
+      :Create()
+   END //EDITBOX
+
+   WITH OBJECT ( LABEL( Self ) )
+      :Name                 := "Label3"
+      :Left                 := 8
+      :Top                  := 85
+      :Width                := 54
+      :Height               := 16
+      :Text                 := "Número"
+      :Create()
+   END //LABEL
+
+   WITH OBJECT ( LABEL( Self ) )
+      :Name                 := "Label4"
+      :Left                 := 275
+      :Top                  := 233
+      :Width                := 80
+      :Height               := 16
+      :Text                 := "Retorno"
+      :Create()
+   END //LABEL
+
+   WITH OBJECT ( LABEL( Self ) )
+      :Name                 := "Label5"
+      :Left                 := 274
+      :Top                  := 7
+      :Width                := 80
+      :Height               := 16
+      :Text                 := "Envio"
+      :Create()
+   END //LABEL
+
+   WITH OBJECT ( EDITBOX( Self ) )
+      :Name                 := "edtRetorno"
+      WITH OBJECT :Font
+         :FaceName             := "Courier"
+      END
+
+      :VertScroll           := .T.
+      :Left                 := 154
+      :Top                  := 253
+      :Width                := 313
+      :Height               := 162
+      :AutoVScroll          := .T.
+      :MultiLine            := .T.
+      :OemConvert           := .T.
+      :WantReturn           := .T.
+      :Create()
+   END //EDITBOX
+
+   WITH OBJECT ( EDITBOX( Self ) )
+      :Name                 := "edTextoLivre"
+      WITH OBJECT :Font
+         :FaceName             := "Courier"
+      END
+
+      :VertScroll           := .T.
+      :HorzScroll           := .T.
+      :Left                 := 476
+      :Top                  := 25
+      :Width                := 232
+      :Height               := 483
+      :AutoHScroll          := .T.
+      :MultiLine            := .T.
+      :OemConvert           := .T.
+      :WantReturn           := .T.
+      :Create()
+   END //EDITBOX
+
+   WITH OBJECT ( BUTTON( Self ) )
+      :Name                 := "btnImprimir"
+      :Left                 := 621
+      :Top                  := 525
+      :Width                := 80
+      :Height               := 25
+      :Text                 := "Enviar"
+      :EventHandler[ "OnClick" ] := "btnImprimir_OnClick"
+      :Create()
+   END //BUTTON
+
+   WITH OBJECT ( CHECKBOX( Self ) )
+      :Name                 := "cbGuilhotina"
+      :Left                 := 494
+      :Top                  := 529
+      :Width                := 100
+      :Height               := 16
+      :Text                 := "Guilhotina"
+      :State                := 1
+      :Checked              := .T.
+      :Create()
+   END //CHECKBOX
+
+   WITH OBJECT ( EDITBOX( Self ) )
+      :Name                 := "edtConsultaNumero"
+      :Left                 := 190
+      :Top                  := 525
+      :Width                := 74
+      :Height               := 22
+      :Text                 := "50"
+      :Create()
+   END //EDITBOX
+
+   WITH OBJECT ( LABEL( Self ) )
+      :Name                 := "Label6"
+      :Left                 := 135
+      :Top                  := 531
+      :Width                := 80
+      :Height               := 16
+      :Text                 := "Número"
+      :Create()
+   END //LABEL
+
+   WITH OBJECT ( EDITBOX( Self ) )
+      :Name                 := "edtConsultaSerie"
+      :Left                 := 46
+      :Top                  := 525
+      :Width                := 67
+      :Height               := 22
+      :Text                 := "1"
+      :Create()
+   END //EDITBOX
+
+   WITH OBJECT ( LABEL( Self ) )
+      :Name                 := "Label7"
+      :Left                 := 9
+      :Top                  := 531
+      :Width                := 80
+      :Height               := 16
+      :Text                 := "Série"
+      :Create()
+   END //LABEL
+
+   WITH OBJECT ( EDITBOX( Self ) )
+      :Name                 := "edtChaveAcesso"
+      :Left                 := 83
+      :Top                  := 480
+      :Width                := 288
+      :Height               := 22
+      :Create()
+   END //EDITBOX
+
+   WITH OBJECT ( LABEL( Self ) )
+      :Name                 := "Label8"
+      :Left                 := 7
+      :Top                  := 481
+      :Width                := 80
+      :Height               := 16
+      :Text                 := "Chave Acesso"
+      :Create()
+   END //LABEL
+
+   WITH OBJECT ( COMBOBOX( Self ) )
+      :Name                 := "cbTipo"
+      :Left                 := 281
+      :Top                  := 524
+      :Width                := 81
+      :Height               := 68
+      :ItemHeight           := 15
+      :Create()
+   END //COMBOBOX
+
+   WITH OBJECT ( EDITBOX( Self ) )
+      :Name                 := "edIDCancelaNota"
+      :Left                 := 84
+      :Top                  := 433
+      :Width                := 287
+      :Height               := 22
+      :Create()
+   END //EDITBOX
+
+   WITH OBJECT ( LABEL( Self ) )
+      :Name                 := "Label9"
+      :Left                 := 8
+      :Top                  := 437
+      :Width                := 80
+      :Height               := 16
+      :Text                 := "Chave Acesso"
+      :Create()
+   END //LABEL
+
+   WITH OBJECT ( BUTTON( Self ) )
+      :Name                 := "btnConsultarNotaChave"
+      :Left                 := 373
+      :Top                  := 478
+      :Width                := 96
+      :Height               := 25
+      :Text                 := "Consulta Nota"
+      :EventHandler[ "OnClick" ] := "btnConsultarNotaChave_OnClick"
+      :Create()
+   END //BUTTON
+
+   WITH OBJECT ( BUTTON( Self ) )
+      :Name                 := "btnEstornarNota"
+      :Left                 := 7
+      :Top                  := 280
+      :Width                := 137
+      :Height               := 25
+      :Text                 := "Estornar Nota"
+      :EventHandler[ "OnClick" ] := "btnEstornarNota_OnClick"
+      :Create()
+   END //BUTTON
+
+   WITH OBJECT ( LINE( Self ) )
+      :Name                 := "Line1"
+      :Left                 := 2
+      :Top                  := 423
+      :Lenght               := 469
+      :Create()
+   END //LINE
+
+   WITH OBJECT ( LINE( Self ) )
+      :Name                 := "Line2"
+      :Left                 := 3
+      :Top                  := 466
+      :Lenght               := 469
+      :Create()
+   END //LINE
+
+   WITH OBJECT ( LINE( Self ) )
+      :Name                 := "Line3"
+      :Top                  := 511
+      :Lenght               := 470
+      :Create()
+   END //LINE
+
+   WITH OBJECT ( LINE( Self ) )
+      :Name                 := "Line4"
+      :Left                 := 2
+      :Top                  := 112
+      :Create()
+   END //LINE
+
+   WITH OBJECT ( LABEL( Self ) )
+      :Name                 := "Label10"
+      :Left                 := 5
+      :Top                  := 27
+      :Width                := 35
+      :Height               := 16
+      :Text                 := "CNPJ:"
+      :Create()
+   END //LABEL
+
+   WITH OBJECT ( EDITBOX( Self ) )
+      :Name                 := "edtCnpj"
+      :Left                 := 38
+      :Top                  := 25
+      :Width                := 110
+      :Height               := 22
+      :Create()
+   END //EDITBOX
+
+   ::Show()
+
+RETURN Self
